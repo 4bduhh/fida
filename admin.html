@@ -1,0 +1,65 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>FIDA CMS</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=DM+Mono&family=Manrope:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet"><link rel="stylesheet" href="app.css"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase-config.js"></script><script src="site.js"></script><script>if(sessionStorage.getItem('fida_admin_auth')!=='true'){window.location.href='login.html';}</script></head><body><header class="site-header"><a class="brand" href="index.html"><b>F</b>FIDA <small style="font:10px DM Mono">CMS</small></a><nav class="site-nav" style="display:flex"><a href="index.html">View website ↗</a></nav></header><main><section class="page-hero animate-entrance"><p class="eyebrow">CONTENT MANAGEMENT</p><h1>FIDA <em>dashboard.</em></h1><p class="lead" id="connection">Checking Supabase connection…</p></section><section class="content"><div class="stats animate-entrance delay-1"><div class="stat"><strong id="enquiry-count">—</strong><span>Total enquiries</span></div><div class="stat"><strong id="new-count">—</strong><span>New enquiries</span></div></div><div class="animate-entrance delay-2" style="margin-top:70px"><p class="eyebrow">RECENT ENQUIRIES</p><div class="resource-list" id="enquiries"><div class="resource"><p>Connect Supabase to view enquiries.</p></div></div></div></section></main><script>
+document.getElementById('connection').textContent = 'Using Local Database (LocalStorage)';
+
+function load() {
+  const enquiries = JSON.parse(localStorage.getItem('fida-enquiries') || '[]');
+  document.getElementById('enquiry-count').textContent = enquiries.length;
+  document.getElementById('new-count').textContent = enquiries.filter(e => e.status === 'new' || !e.status).length;
+
+  const sorted = enquiries.sort((a, b) => new Date(b.created_at || b.createdAt) - new Date(a.created_at || a.createdAt));
+
+  document.getElementById('enquiries').innerHTML = sorted.length ? sorted.map(x => {
+    const wa = (x.whatsapp || x.phone || '').replace(/[^0-9+]/g, '');
+    const waNumber = wa.startsWith('+') ? wa.replace('+', '') : (wa.startsWith('91') ? wa : '91' + wa);
+    const product = x.product || 'our filament & net products';
+    const name = x.name ? x.name.split(' ')[0] : 'there';
+    const company = x.company ? ' at ' + x.company : '';
+    const msg = `Hi ${name}${company}! 
+
+Thank you for your interest in *${product}* from *FIDA Filaments*.
+
+We specialise in high-quality filaments, fishing nets, ropes & industrial netting — built for performance that lasts.
+
+We'd love to understand your requirement better and offer you the *best price & specification*. Could we arrange a quick call or share our product catalogue? 📦
+
+— FIDA Filaments Team
+ +91 4652 265915
+ fidafilaments.com`;
+    const waLink = waNumber ? `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}` : null;
+    return `
+    <div style="background:#fff;border:1px solid #e8e3f5;border-radius:16px;padding:20px 24px;margin-bottom:14px;box-shadow:0 2px 12px rgba(87,61,147,.06);">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;">
+        <div style="flex:1;min-width:0;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+            <span style="background:#eeeaff;color:#573d93;font:600 10px 'DM Mono',monospace;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:999px;">${x.status || 'NEW'}</span>
+            <span style="font-size:11px;color:#aaa;">${new Date(x.created_at || x.createdAt).toLocaleDateString('en-IN', {day:'numeric',month:'short',year:'numeric'})}</span>
+          </div>
+          <h3 style="margin:0 0 4px;font-size:17px;font-weight:700;color:#211b38;">${x.name || '—'}</h3>
+          <p style="margin:0 0 10px;font-size:13px;color:#573d93;font-weight:600;">${x.product || 'General enquiry'}</p>
+          <div style="display:flex;flex-wrap:wrap;gap:6px 20px;font-size:13px;color:#756f88;margin-bottom:10px;">
+            ${x.company ? '<span>🏢 <strong style="color:#211b38">' + x.company + '</strong></span>' : ''}
+            ${x.email ? '<span>✉️ ' + x.email + '</span>' : ''}
+            ${(x.whatsapp || x.phone) ? '<span>📱 ' + (x.whatsapp || x.phone) + '</span>' : ''}
+            ${x.quantity ? '<span>📦 ' + x.quantity + '</span>' : ''}
+            ${x.location ? '<span>📍 ' + x.location + '</span>' : ''}
+          </div>
+          ${x.message ? '<div style="background:#f8f7ff;border-left:3px solid #c4b6ff;border-radius:6px;padding:10px 14px;font-size:13px;color:#756f88;line-height:1.6;">💬 ' + x.message + '</div>' : ''}
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;flex-shrink:0;">
+          ${waLink ? `<a href="${waLink}" target="_blank" style="display:flex;align-items:center;gap:6px;background:#25d366;color:#fff;border:none;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;text-decoration:none;white-space:nowrap;">💬 Send on WhatsApp</a>` : '<span style="font-size:11px;color:#bbb;">No WhatsApp</span>'}
+          <button onclick="deleteEnquiry('${x.id}')" style="background:#fff0f0;color:#e74c3c;border:1px solid #f5c6c6;border-radius:8px;padding:6px 14px;font-size:12px;font-weight:600;cursor:pointer;">Delete</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('') : '<div style="padding:24px;color:#756f88;">No enquiries yet.</div>';
+}
+
+load();
+
+window.deleteEnquiry = function(id) {
+  const enquiries = JSON.parse(localStorage.getItem('fida-enquiries') || '[]');
+  const updated = enquiries.filter(e => e.id !== id);
+  localStorage.setItem('fida-enquiries', JSON.stringify(updated));
+  load();
+};
+</script></body></html>
