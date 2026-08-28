@@ -884,13 +884,30 @@
       letter-spacing: -.08em;
     }
 
-    .loader-name i {
+    .loader-mark {
       display: inline-block;
-      width: .7em;
-      height: .7em;
+      width: .78em;
+      height: .78em;
       border: 2px solid #b6f8ff;
       border-radius: 50%;
-      box-shadow: inset 0 0 0 5px #1b3538;
+      object-fit: cover;
+      background: #007f87;
+      box-shadow: 0 0 0 5px #1b3538, 0 0 18px #6be9f490;
+      animation: loaderMarkPulse 1.8s ease-in-out infinite;
+    }
+
+    @keyframes loaderMarkPulse {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 5px #1b3538, 0 0 14px #6be9f470;
+        transform: scale(1);
+      }
+
+      50% {
+        box-shadow: 0 0 0 5px #1b3538, 0 0 30px #9df4fcc0;
+        transform: scale(1.07);
+      }
     }
 
     .loader-track {
@@ -1062,14 +1079,28 @@
 
     .brand {
       display: flex;
-      align-items: baseline;
-      gap: 8px;
+      align-items: center;
+      gap: 11px;
       font-family: 'Bevan', 'Playfair Display', serif;
       font-weight: 400;
       font-size: 1.35rem;
       letter-spacing: -.02em;
       color: var(--ink);
       text-transform: uppercase;
+    }
+
+    .brand-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 11px;
+      object-fit: cover;
+      box-shadow: 0 6px 16px #007f8740;
+      transition: transform .35s cubic-bezier(.16, 1, .3, 1), box-shadow .35s;
+    }
+
+    .brand:hover .brand-logo {
+      transform: rotate(-6deg) scale(1.08);
+      box-shadow: 0 10px 22px #007f8759;
     }
 
     .brand-mark {
@@ -2588,7 +2619,7 @@
   <div id="loader" aria-label="Loading FIDA Filaments">
     <div class="loader-inner">
       <div class="loader-top"><span>FIDA FILAMENTS</span><span id="loader-percent">00%</span></div>
-      <div class="loader-name"><i></i>FIDA</div>
+      <div class="loader-name"><img class="loader-mark" src="asserts/fida-logo.png" alt="FIDA Filaments">FIDA</div>
       <div class="loader-track">
         <div class="loader-progress" id="loader-progress"></div>
       </div>
@@ -2613,7 +2644,7 @@
     <div class="intro-timer" id="intro-timer">00:08</div>
   </section>
   <header>
-    <a class="brand" href="#top" aria-label="FIDA home">FIDA <span class="brand-mark">FILAMENTS</span></a>
+    <a class="brand" href="#top" aria-label="FIDA home"><img class="brand-logo" src="asserts/fida-logo.png" alt="FIDA Filaments logo">FIDA <span class="brand-mark">FILAMENTS</span></a>
     <nav id="site-nav"><a href="products.html">Products</a><a href="about.html">About</a><a href="quality.html">Quality</a><a
         class="nav-cta" href="contact.html">Request a quote </a><a href="login.html">login</a></nav>
     <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false"

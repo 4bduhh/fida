@@ -34,8 +34,8 @@
     }
     .login-brand a {
       display: inline-flex;
-      align-items: baseline;
-      gap: 8px;
+      align-items: center;
+      gap: 10px;
       font-family: 'Bevan', 'Playfair Display', serif;
       font-weight: 400;
       font-size: 1.6rem;
@@ -43,6 +43,13 @@
       color: var(--ink);
       text-transform: uppercase;
       justify-content: center;
+    }
+    .login-brand .brand-logo {
+      width: 46px;
+      height: 46px;
+      border-radius: 13px;
+      object-fit: cover;
+      box-shadow: 0 8px 20px #007f8745;
     }
     .login-brand .brand-mark {
       font-family: 'Bevan', 'Playfair Display', serif;
@@ -109,7 +116,7 @@
 
   <div class="login-panel">
     <div class="login-brand">
-      <a href="index.html">FIDA <span class="brand-mark">FILAMENTS</span></a>
+      <a href="index.html"><img class="brand-logo" src="asserts/fida-logo.png" alt="FIDA Filaments logo">FIDA <span class="brand-mark">FILAMENTS</span></a>
       <p class="eyebrow" style="margin-top: 10px;">CMS LOGIN</p>
     </div>
 
