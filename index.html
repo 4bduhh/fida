@@ -2902,18 +2902,14 @@
       clearTimeout(idleTimer);
       heroQuote.classList.remove('idle-hidden');
     });
-    heroForm.addEventListener('submit', event => {
+    heroForm.addEventListener('submit', async event => {
       event.preventDefault();
       heroSubmitted = true;
       clearTimeout(idleTimer);
       heroQuote.classList.remove('idle-hidden');
       const data = Object.fromEntries(new FormData(heroForm).entries());
-      data.id = crypto.randomUUID ? crypto.randomUUID() : Date.now().toString();
       data.source = 'hero-quick-form';
-      data.created_at = new Date().toISOString();
-      const saved = JSON.parse(localStorage.getItem('fida-enquiries') || '[]');
-      saved.push(data);
-      localStorage.setItem('fida-enquiries', JSON.stringify(saved));
+      await FidaData.createEnquiry(data);
       heroQuote.classList.add('state-success');
       setTimeout(() => {
         heroQuote.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
@@ -3053,14 +3049,10 @@
     })();
     document.querySelectorAll('.quote-product').forEach(link => link.addEventListener('click', () => { document.getElementById('product').value = link.dataset.product; }));
     const form = document.getElementById('enquiry-form');
-    form.addEventListener('submit', event => {
+    form.addEventListener('submit', async event => {
       event.preventDefault();
       const data = Object.fromEntries(new FormData(form).entries());
-      data.id = crypto.randomUUID ? crypto.randomUUID() : Date.now().toString();
-      data.created_at = new Date().toISOString();
-      const saved = JSON.parse(localStorage.getItem('fida-enquiries') || '[]');
-      saved.push(data);
-      localStorage.setItem('fida-enquiries', JSON.stringify(saved));
+      await FidaData.createEnquiry(data);
       document.getElementById('form-content').style.display = 'none';
       document.getElementById('success').classList.add('show');
       const slug = (data.product || '').toLowerCase().replace(/ & /g, '-').replace(/ /g, '-');
