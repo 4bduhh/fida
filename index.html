@@ -4,12 +4,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="FIDA FILAMENTS — precision filaments, nets, ropes and industrial materials.">
-  <title>FIDA FILAMENTS | Quality over quantity</title>
+  <meta name="description" content="FIDA FILAMENTS — precision monofilament yarn, hanks and fishing nets, 0.10mm to 1.00mm.">
+  <title>FIDA FILAMENTS | Monofilament Yarn, Hanks &amp; Fishing Nets</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Bevan&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap"
     rel="stylesheet">
   <style>
     :root {
@@ -754,14 +754,14 @@
       --fida-motion-token-0738: 738ms;
       --fida-motion-token-0739: 739ms;
       --fida-motion-token-0740: 740ms;
-      --ink: #211b38;
-      --muted: #756f88;
-      --purple: #573d93;
-      --violet: #7353bb;
-      --lavender: #eeeaff;
-      --lilac: #f8f7ff;
+      --ink: #1b3538;
+      --muted: #6f8588;
+      --purple: #3d8a93;
+      --violet: #53b1bb;
+      --lavender: #eafdff;
+      --lilac: #f7feff;
       --teal: #007f87;
-      --line: #dfd9ed;
+      --line: #d9ebed;
       --white: #ffffff;
       --shadow: 0 24px 70px rgba(54, 37, 103, .12);
       --radius: 28px;
@@ -846,7 +846,7 @@
       inset: 0;
       display: grid;
       place-items: center;
-      background: #211b38;
+      background: #1b3538;
       color: white;
       transition: opacity .8s var(--ease), visibility .8s;
     }
@@ -882,9 +882,9 @@
       display: inline-block;
       width: .7em;
       height: .7em;
-      border: 2px solid #c4b6ff;
+      border: 2px solid #b6f8ff;
       border-radius: 50%;
-      box-shadow: inset 0 0 0 5px #211b38;
+      box-shadow: inset 0 0 0 5px #1b3538;
     }
 
     .loader-track {
@@ -896,7 +896,7 @@
     .loader-progress {
       width: 0%;
       height: 100%;
-      background: #c4b6ff;
+      background: #b6f8ff;
       transition: width .18s linear;
     }
 
@@ -904,7 +904,7 @@
       display: flex;
       justify-content: space-between;
       margin-top: 13px;
-      color: #c7c2d7;
+      color: #c2d5d7;
       font-size: 11px;
     }
 
@@ -915,7 +915,7 @@
       display: grid;
       place-items: center;
       overflow: hidden;
-      background: #181329;
+      background: #132729;
       color: white;
       transition: opacity 1s var(--ease), visibility 1s;
     }
@@ -938,7 +938,7 @@
     .intro-fallback {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 70% 25%, #7757ba 0, transparent 30%), radial-gradient(circle at 25% 75%, #067c84 0, transparent 30%), linear-gradient(130deg, #171029, #2e2254);
+      background: radial-gradient(circle at 70% 25%, #57b0ba 0, transparent 30%), radial-gradient(circle at 25% 75%, #067c84 0, transparent 30%), linear-gradient(130deg, #102629, #224f54);
     }
 
     .intro-fibres {
@@ -959,7 +959,7 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      color: #d9d1fb;
+      color: #d1f7fb;
       font: 500 11px "DM Mono", monospace;
       letter-spacing: .14em;
       text-transform: uppercase;
@@ -983,7 +983,7 @@
     }
 
     .intro-title em {
-      color: #c8bcff;
+      color: #bcf8ff;
       font-family: "Playfair Display", serif;
       font-weight: 700;
     }
@@ -998,7 +998,7 @@
     .intro-bottom p {
       max-width: 340px;
       margin: 0;
-      color: #d5cfe3;
+      color: #cfe1e3;
       line-height: 1.6;
     }
 
@@ -1022,7 +1022,7 @@
       right: 6vw;
       bottom: 7vh;
       z-index: 2;
-      color: #d8d1ea;
+      color: #d1e8ea;
       font: 11px "DM Mono", monospace;
       letter-spacing: .12em;
     }
@@ -1056,22 +1056,22 @@
 
     .brand {
       display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 800;
-      font-size: 1.2rem;
-      letter-spacing: -.07em;
+      align-items: baseline;
+      gap: 8px;
+      font-family: 'Bevan', 'Playfair Display', serif;
+      font-weight: 400;
+      font-size: 1.35rem;
+      letter-spacing: -.02em;
+      color: var(--ink);
+      text-transform: uppercase;
     }
 
     .brand-mark {
-      display: grid;
-      place-items: center;
-      width: 29px;
-      height: 29px;
-      color: white;
-      border-radius: 50%;
-      background: var(--purple);
-      font-size: 15px;
+      font-family: 'Bevan', 'Playfair Display', serif;
+      font-size: 0.62em;
+      letter-spacing: -.01em;
+      color: var(--teal);
+      opacity: .95;
     }
 
     nav {
@@ -1210,7 +1210,7 @@
       justify-content: space-between;
       gap: 30px;
       padding: 104px clamp(28px, 8vw, 48px) 40px;
-      background: linear-gradient(165deg, var(--purple), var(--violet) 55%, #40296f);
+      background: linear-gradient(165deg, var(--purple), var(--violet) 55%, #29686f);
       box-shadow: -40px 0 90px rgba(24, 19, 43, .38);
       transform: translateX(100%);
       transition: transform .6s var(--ease);
@@ -1250,7 +1250,7 @@
       left: -24%;
       width: 82%;
       height: 62%;
-      background: radial-gradient(circle at 35% 32%, #b39dff, #573d93 62%, transparent 76%);
+      background: radial-gradient(circle at 35% 32%, #9df5ff, #3d8a93 62%, transparent 76%);
       animation-duration: 17s;
     }
 
@@ -1269,7 +1269,7 @@
       right: -20%;
       width: 58%;
       height: 44%;
-      background: radial-gradient(circle at 50% 50%, #ffd3ef, #7353bb 60%, transparent 76%);
+      background: radial-gradient(circle at 50% 50%, #ffd3ef, #53b1bb 60%, transparent 76%);
       opacity: .55;
       animation-duration: 13s;
       animation-delay: -8s;
@@ -1353,7 +1353,7 @@
 
     .mobile-nav-inner a:hover,
     .mobile-nav-inner a:active {
-      color: #d9ceff;
+      color: #cefaff;
     }
 
     .mobile-nav-cta {
@@ -1420,7 +1420,7 @@
       right: -8vw;
       width: min(70vw, 850px);
       height: min(70vw, 850px);
-      border: 1px solid #d7cffa;
+      border: 1px solid #cff6fa;
       border-radius: 50%;
     }
 
@@ -1428,14 +1428,14 @@
     .hero-orbit::after {
       content: "";
       position: absolute;
-      border: 1px solid #ded8f7;
+      border: 1px solid #d8f4f7;
       border-radius: 50%;
       inset: 10%;
     }
 
     .hero-orbit::after {
       inset: 25%;
-      border-color: #c8c0ed;
+      border-color: #c0e8ed;
     }
 
     .spool-wrap {
@@ -1513,7 +1513,7 @@
       position: absolute;
       inset: 0;
       border-radius: 50%;
-      background: repeating-radial-gradient(circle at center, #ece8ff 0 3px, #754fc0 4px 5px, #d0c5f7 6px 9px, #563792 10px 12px);
+      background: repeating-radial-gradient(circle at center, #e8fdff 0 3px, #4fb5c0 4px 5px, #c5f2f7 6px 9px, #378992 10px 12px);
       animation: rotateSpool var(--spool-speed, 18s) linear infinite, spoolGlow 4.6s ease-in-out infinite;
     }
 
@@ -1523,7 +1523,7 @@
       inset: 28%;
       border-radius: 50%;
       background: var(--lilac);
-      box-shadow: inset 0 0 0 20px #44316f;
+      box-shadow: inset 0 0 0 20px #31696f;
     }
 
     .spool::after {
@@ -1531,8 +1531,8 @@
       position: absolute;
       inset: 42%;
       border-radius: 50%;
-      background: #e9e4fd;
-      box-shadow: 0 0 0 14px #6d51a8;
+      background: #e4fafd;
+      box-shadow: 0 0 0 14px #519fa8;
     }
 
     .spool-shine {
@@ -1617,7 +1617,7 @@
     .hero-sub {
       max-width: 400px;
       margin: 32px 0;
-      color: #615978;
+      color: #597578;
       font-size: 15px;
       line-height: 1.7;
     }
@@ -1661,7 +1661,7 @@
       display: flex;
       align-items: center;
       gap: 14px;
-      color: #5f5776;
+      color: #577376;
       font: 11px "DM Mono", monospace;
     }
 
@@ -1669,7 +1669,7 @@
       content: "";
       width: 44px;
       height: 1px;
-      background: #8d7db5;
+      background: #7dafb5;
     }
 
     .hero::before {
@@ -1724,7 +1724,7 @@
       width: min(340px, 88vw);
       padding: 26px;
       border-radius: var(--radius);
-      background: linear-gradient(165deg, #fff, #f3effe);
+      background: linear-gradient(165deg, #fff, #effcfe);
       box-shadow: var(--shadow);
       opacity: 0;
       transform: translateY(-50%) translateX(150%);
@@ -1773,7 +1773,7 @@
       width: 100%;
       padding: 10px 0;
       border: 0;
-      border-bottom: 1px solid #d8d1ea;
+      border-bottom: 1px solid #d1e8ea;
       background: transparent;
       outline: 0;
       font-size: 13px;
@@ -1880,7 +1880,7 @@
     .marquee {
       overflow: hidden;
       padding: 17px 0;
-      color: #f2efff;
+      color: #effdff;
       background: var(--purple);
       white-space: nowrap;
     }
@@ -1921,7 +1921,7 @@
     }
 
     .vertical-label {
-      color: #9288a9;
+      color: #88a6a9;
       font: 500 11px "DM Mono", monospace;
       letter-spacing: .14em;
       text-transform: uppercase;
@@ -1952,7 +1952,7 @@
     .pin-stage {
       position: relative;
       height: 220vh;
-      background: #241b3f;
+      background: #1b3b3f;
       color: white;
     }
 
@@ -1973,7 +1973,7 @@
     }
 
     .pin-heading .eyebrow {
-      color: #bfb0ed;
+      color: #b0e7ed;
     }
 
     .pin-heading h2 {
@@ -2000,12 +2000,12 @@
       padding: 29px;
       overflow: hidden;
       border-radius: var(--radius);
-      background: #f7f5ff;
+      background: #f5feff;
       color: var(--ink);
     }
 
     .product-card:nth-child(2n) {
-      background: #c8baf7;
+      background: #baf1f7;
     }
 
     .product-card:nth-child(3n) {
@@ -2013,7 +2013,7 @@
     }
 
     .product-num {
-      color: #74698e;
+      color: #698a8e;
       font: 500 11px "DM Mono", monospace;
     }
 
@@ -2031,7 +2031,7 @@
       position: relative;
       z-index: 1;
       max-width: 225px;
-      color: #625a77;
+      color: #5a7477;
       font-size: 13px;
       line-height: 1.6;
     }
@@ -2044,18 +2044,45 @@
       aspect-ratio: 1;
       border: 16px solid rgba(87, 61, 147, .88);
       border-radius: 50%;
-      background: repeating-radial-gradient(circle, #fff 0 4px, #7656b8 5px 8px);
+      background: var(--img1, repeating-radial-gradient(circle, #fff 0 4px, #56aeb8 5px 8px)) center/cover;
       transform: rotate(24deg);
+      overflow: hidden;
+      transition: transform .6s cubic-bezier(.16, 1, .3, 1);
+    }
+
+    .product-visual::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--img2, var(--img1)) center/cover;
+      opacity: 0;
+      transform: scale(1.08);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+
+    .product-card:hover .product-visual {
+      transform: rotate(24deg) scale(1.05);
+    }
+
+    .product-card:hover .product-visual::after {
+      opacity: 1;
+      transform: scale(1);
     }
 
     .product-card:nth-child(2) .product-visual {
       border-radius: 8px 50% 50% 50%;
-      background: repeating-linear-gradient(30deg, #ebebff 0 4px, #6344a5 5px 8px);
     }
 
     .product-card:nth-child(3) .product-visual {
       border-color: #0c7778;
-      background: repeating-radial-gradient(circle, #e8ffff 0 4px, #168b88 5px 8px);
+    }
+
+    .product-card:nth-child(3) .product-visual::after {
+      display: none;
+    }
+
+    .product-card:nth-child(3):hover .product-visual {
+      transform: rotate(24deg);
     }
 
     .product-card:nth-child(4) .product-visual {
@@ -2094,7 +2121,7 @@
       position: relative;
       min-height: 500px;
       overflow: hidden;
-      background: linear-gradient(145deg, #ebe6ff, #cebef5);
+      background: linear-gradient(145deg, #e6fcff, #bef0f5);
     }
 
     .quality-video {
@@ -2158,7 +2185,7 @@
 
     .applications {
       padding: clamp(90px, 12vw, 150px) clamp(22px, 5vw, 78px);
-      background: #fbfaff;
+      background: #fafeff;
     }
 
     .applications-top {
@@ -2226,7 +2253,7 @@
     }
 
     .app:hover p {
-      color: #e2dafb;
+      color: #daf8fb;
     }
 
     .enquiry {
@@ -2236,7 +2263,7 @@
       grid-template-columns: .9fr 1.1fr;
       overflow: hidden;
       color: white;
-      background: #211a38;
+      background: #1a3538;
     }
 
     .enquiry-copy {
@@ -2254,7 +2281,7 @@
       bottom: -22%;
       width: 100%;
       aspect-ratio: 1;
-      border: 1px solid #756097;
+      border: 1px solid #609197;
       border-radius: 50%;
       box-shadow: 0 0 0 60px rgba(129, 104, 181, .08), 0 0 0 120px rgba(129, 104, 181, .05);
     }
@@ -2265,7 +2292,7 @@
     }
 
     .enquiry-copy .eyebrow {
-      color: #bfb2e6;
+      color: #b2e1e6;
     }
 
     .enquiry-copy h2 {
@@ -2277,12 +2304,12 @@
     }
 
     .enquiry-copy h2 em {
-      color: #c2b4fa;
+      color: #b4f3fa;
       font-family: "Playfair Display", serif;
     }
 
     .contact-detail {
-      color: #c9c2dd;
+      color: #c2dadd;
       font-size: 13px;
       line-height: 1.8;
     }
@@ -2329,7 +2356,7 @@
     label {
       display: block;
       margin: 0 0 7px;
-      color: #6e6680;
+      color: #667d80;
       font: 500 10px "DM Mono", monospace;
       letter-spacing: .08em;
       text-transform: uppercase;
@@ -2341,7 +2368,7 @@
       width: 100%;
       padding: 13px 0;
       border: 0;
-      border-bottom: 1px solid #d8d1e6;
+      border-bottom: 1px solid #d1e4e6;
       outline: none;
       color: var(--ink);
       background: transparent;
@@ -2370,7 +2397,7 @@
 
     .privacy {
       max-width: 220px;
-      color: #888094;
+      color: #809294;
       font-size: 10px;
       line-height: 1.55;
     }
@@ -2394,8 +2421,8 @@
       display: flex;
       justify-content: space-between;
       gap: 18px;
-      color: #746c83;
-      background: #f6f4fb;
+      color: #6c8183;
+      background: #f4fafb;
       font: 10px "DM Mono", monospace;
       letter-spacing: .07em;
       text-transform: uppercase;
@@ -2579,7 +2606,7 @@
     <div class="intro-timer" id="intro-timer">00:08</div>
   </section>
   <header>
-    <a class="brand" href="#top" aria-label="FIDA home"><span class="brand-mark">F</span>FIDA</a>
+    <a class="brand" href="#top" aria-label="FIDA home">FIDA <span class="brand-mark">FILAMENTS</span></a>
     <nav id="site-nav"><a href="products.html">Products</a><a href="about.html">About</a><a href="quality.html">Quality</a><a
         class="nav-cta" href="contact.html">Request a quote </a><a href="login.html">login</a></nav>
     <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false"
@@ -2615,8 +2642,8 @@
       <div class="hero-content reveal">
         <p class="eyebrow">FIDA FILAMENTS PRIVATE LIMITED</p>
         <h1><span>Stronger by</span><span><em>every</em> strand.</span></h1>
-        <p class="hero-sub">Precision filaments, fishing nets and technical materials, made with a quiet obsession for
-          reliable quality.</p>
+        <p class="hero-sub">Precision monofilament yarn, hanks and fishing nets, engineered in sizes from 0.10mm to
+          1.00mm for reliable quality.</p>
         <a class="button" href="#products">Explore our range <span class="button-arrow">↓</span></a>
       </div>
       <div class="hero-meta">SCROLL TO DISCOVER</div>
@@ -2633,13 +2660,9 @@
               <label for="hq-product">Product</label>
               <select id="hq-product" name="product" required>
                 <option value="">Select a product</option>
-                <option>Filaments</option>
+                <option>Monofilament Yarn</option>
+                <option>Hanks</option>
                 <option>Fishing Nets</option>
-                <option>Fishing Lines</option>
-                <option>Aquaculture Nets</option>
-                <option>Industrial Nets</option>
-                <option>Ropes &amp; Twines</option>
-                <option>Accessories &amp; Specialty</option>
               </select>
             </div>
             <div class="quote-pick" id="hq-pick"><img id="hq-pick-img" alt=""><span id="hq-pick-text"></span></div>
@@ -2653,9 +2676,8 @@
       </div>
     </section>
     <div class="marquee">
-      <div class="marquee-track">QUALITY OVER QUANTITY · MONOFILAMENT · MULTIFILAMENT · FISHING NETS · INDUSTRIAL NETS ·
-        ROPES &amp; TWINES · QUALITY OVER QUANTITY · MONOFILAMENT · MULTIFILAMENT · FISHING NETS · INDUSTRIAL NETS ·
-        ROPES &amp; TWINES · </div>
+      <div class="marquee-track">QUALITY OVER QUANTITY · MONOFILAMENT YARN · HANKS · FISHING NETS · 0.10MM – 1.00MM ·
+        QUALITY OVER QUANTITY · MONOFILAMENT YARN · HANKS · FISHING NETS · 0.10MM – 1.00MM · </div>
     </div>
     <section class="intro-section">
       <div class="spool-dock" id="spool-dock" aria-hidden="true"></div>
@@ -2673,52 +2695,32 @@
           <h2>One fibre.<br>Infinite <em>possibility.</em></h2>
         </div>
         <div class="pin-rail" id="pin-rail">
-          <article class="product-card"><span class="product-num">01 — FILAMENTS</span>
-            <h3>Filaments</h3>
-            <p>Monofilament, multifilament and specialty yarns.</p>
-            <div class="product-visual" style="background: url('asserts/UV-Stabilized Filament.jpg') center/cover;">
-            </div><a class="product-link quote-product" data-product="Filaments" href="#enquiry">Explore category ↗</a>
+          <article class="product-card"><span class="product-num">01 — MONOFILAMENT YARN</span>
+            <h3>Monofilament yarn</h3>
+            <p>Precision-drawn monofilament, 0.10mm to 1.00mm, for fishing lines and technical nets.</p>
+            <div class="product-visual" style="--img1:url('asserts/Monofilament Yarn Green.jpg'); --img2:url('asserts/Monofilament Yarn Blue.jpg');">
+            </div><a class="product-link quote-product" data-product="Monofilament Yarn" href="#enquiry">Explore category ↗</a>
           </article>
-          <article class="product-card"><span class="product-num">02 — FISHING NETS</span>
+          <article class="product-card"><span class="product-num">02 — HANKS</span>
+            <h3>Hanks</h3>
+            <p>Hank-wound monofilament, ready for the trade and hand-net makers.</p>
+            <div class="product-visual" style="--img1:url('asserts/Nylon Hanks.jpg'); --img2:url('asserts/Nylon Hanks Stacked.jpg');">
+            </div><a class="product-link quote-product" data-product="Hanks" href="#enquiry">Explore category
+              ↗</a>
+          </article>
+          <article class="product-card"><span class="product-num">03 — FISHING NETS</span>
             <h3>Fishing nets</h3>
             <p>Engineered meshes for every fishing operation.</p>
-            <div class="product-visual" style="background: url('asserts/Multifilament Fishing Net.jpg') center/cover;">
+            <div class="product-visual" style="--img1:url('asserts/Multifilament Fishing Net.jpg'); --img2:url('asserts/Multifilament Fishing Net.jpg');">
             </div><a class="product-link quote-product" data-product="Fishing Nets" href="#enquiry">Explore category
               ↗</a>
-          </article>
-          <article class="product-card"><span class="product-num">03 — AQUACULTURE</span>
-            <h3>Aquaculture</h3>
-            <p>Dependable netting for farms and cages.</p>
-            <div class="product-visual" style="background: url('asserts/HDPE Aquaculture Net.jpg') center/cover;"></div>
-            <a class="product-link quote-product" data-product="Aquaculture Nets" href="#enquiry">Explore category ↗</a>
-          </article>
-          <article class="product-card"><span class="product-num">04 — INDUSTRIAL</span>
-            <h3>Industrial nets</h3>
-            <p>Protection, performance and purpose-built strength.</p>
-            <div class="product-visual" style="background: url('asserts/Agricultural Shade Net.jpg') center/cover;">
-            </div><a class="product-link quote-product" data-product="Industrial Nets" href="#enquiry">Explore category
-              ↗</a>
-          </article>
-          <article class="product-card"><span class="product-num">05 — MARINE</span>
-            <h3>Ropes &amp; twines</h3>
-            <p>Hardworking lines for land, marine and industry.</p>
-            <div class="product-visual"
-              style="background: url('asserts/PP-Rope-Spliced-With-Thimbles.webp') center/cover;"></div><a
-              class="product-link quote-product" data-product="Ropes & Twines" href="#enquiry">Explore category ↗</a>
-          </article>
-          <article class="product-card"><span class="product-num">06 — CUSTOM</span>
-            <h3>Specialty</h3>
-            <p>Custom products made around your specification.</p>
-            <div class="product-visual" style="background: url('asserts/Nylon Monofilament img.jpg') center/cover;">
-            </div><a class="product-link quote-product" data-product="Accessories & Specialty" href="#enquiry">Explore
-              category ↗</a>
           </article>
         </div>
       </div>
     </section>
     <section class="quality" id="quality">
       <div class="quality-art"><video class="quality-video" autoplay muted loop playsinline preload="auto"
-          poster="asserts/Nylon Monofilament img.jpg">
+          poster="asserts/fida.jpeg">
           <source src="asserts/Nylon_Monofilament.mp4" type="video/mp4">
         </video>
         <div class="quality-art-overlay"></div>
@@ -2734,7 +2736,7 @@
               use.</span></div>
           <div class="quality-point"><b>Consistent output</b><span>Process-focused production from spool to
               shipment.</span></div>
-          <div class="quality-point"><b>Custom capability</b><span>Colours, mesh, sizes and specifications tailored to
+          <div class="quality-point"><b>Custom capability</b><span>Monofilament yarn from 0.10mm to 1.00mm, tailored to
               you.</span></div>
           <div class="quality-point"><b>B2B ready</b><span>Responsive support for distributors and industrial
               buyers.</span></div>
@@ -2754,32 +2756,17 @@
         <article class="app">
           <div class="app-icon">🎣</div>
           <h3>Commercial fishing</h3>
-          <p>Gill nets, trawl nets, fishing lines and marine ropes.</p>
+          <p>Gill nets, trawl nets and fishing lines built from precision monofilament.</p>
         </article>
         <article class="app">
           <div class="app-icon">🐟</div>
           <h3>Aquaculture</h3>
-          <p>Cage nets, HDPE nets and shrimp-farming solutions.</p>
-        </article>
-        <article class="app">
-          <div class="app-icon">🌾</div>
-          <h3>Agriculture</h3>
-          <p>Shade nets, crop protection and agricultural twines.</p>
-        </article>
-        <article class="app">
-          <div class="app-icon">🏏</div>
-          <h3>Sports</h3>
-          <p>Goal nets, practice nets and durable boundary systems.</p>
-        </article>
-        <article class="app">
-          <div class="app-icon">🏗️</div>
-          <h3>Construction</h3>
-          <p>Safety netting and reinforcement materials for worksites.</p>
+          <p>Cage nets and farming solutions using durable monofilament yarn.</p>
         </article>
         <article class="app">
           <div class="app-icon">⚓</div>
           <h3>Marine</h3>
-          <p>Ropes and technical gear for a tough working coastline.</p>
+          <p>Hanks and fishing nets for a tough working coastline.</p>
         </article>
       </div>
     </section>
@@ -2810,13 +2797,9 @@
               <div class="field full"><label for="product">Product required</label><select id="product" name="product"
                   required>
                   <option value="">Select a product category</option>
-                  <option>Filaments</option>
+                  <option>Monofilament Yarn</option>
+                  <option>Hanks</option>
                   <option>Fishing Nets</option>
-                  <option>Fishing Lines</option>
-                  <option>Aquaculture Nets</option>
-                  <option>Industrial Nets</option>
-                  <option>Ropes &amp; Twines</option>
-                  <option>Accessories &amp; Specialty</option>
                 </select></div>
               <div class="field"><label for="quantity">Quantity / requirement</label><input id="quantity"
                   name="quantity" placeholder="e.g. 500 kg / 100 rolls"></div>
@@ -2851,7 +2834,7 @@
     const introTimer = document.getElementById('intro-timer');
     let progress = 0;
     const loading = setInterval(() => { progress = Math.min(progress + Math.floor(Math.random() * 14) + 4, 100); loaderProgress.style.width = `${progress}%`; loaderPercent.textContent = `${String(progress).padStart(2, '0')}%`; if (progress === 100) { clearInterval(loading); setTimeout(() => loader.classList.add('done'), 300); } }, 120);
-    let seconds = 8;
+    let seconds = 3;
     const timer = setInterval(() => { seconds -= 1; introTimer.textContent = `00:0${Math.max(seconds, 0)}`; if (seconds <= 0) closeIntro(); }, 1000);
     function closeIntro() { clearInterval(timer); introVideo.pause(); intro.classList.add('is-gone'); startHeroTimeline(); }
     let heroTimelineStarted = false;
