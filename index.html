@@ -11,6 +11,9 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Bevan&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap"
     rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="site.js"></script>
   <style>
     :root {
       /* Extended motion-token scale keeps this single-file design system ready for the next pages. */
@@ -1989,6 +1992,7 @@
       gap: 18px;
       width: max-content;
       padding-left: clamp(22px, 5vw, 78px);
+      padding-top: clamp(230px, 32vh, 340px);
       transform: translateX(0);
       will-change: transform;
     }
@@ -3029,6 +3033,24 @@
     const rail = document.getElementById('pin-rail');
     function moveRail() { const rect = pinStage.getBoundingClientRect(); const maxScroll = pinStage.offsetHeight - innerHeight; const amount = Math.max(0, Math.min(1, -rect.top / maxScroll)); const maxMove = Math.max(0, rail.scrollWidth - innerWidth + 78); rail.style.transform = `translateX(${-amount * maxMove}px)`; }
     addEventListener('scroll', moveRail, { passive: true }); moveRail();
+    (function loadPinRailProducts() {
+      if (!window.FidaData) return;
+      FidaData.products().then(items => {
+        if (!items || !items.length) return;
+        rail.innerHTML = items.map((p, i) => {
+          const num = String(i + 1).padStart(2, '0') + ' — ' + (p.category || '').toUpperCase();
+          const img1 = FidaData.imgSrc(p.image, p.name);
+          const img2 = FidaData.imgSrc(p.image2 || p.image, p.name);
+          return `<article class="product-card"><span class="product-num">${num}</span>
+            <h3>${p.name}</h3>
+            <p>${p.description || ''}</p>
+            <div class="product-visual" style="--img1:url('${img1}'); --img2:url('${img2}');"></div>
+            <a class="product-link" href="product.html?slug=${encodeURIComponent(p.slug)}">Explore category ↗</a>
+          </article>`;
+        }).join('');
+        moveRail();
+      });
+    })();
     document.querySelectorAll('.quote-product').forEach(link => link.addEventListener('click', () => { document.getElementById('product').value = link.dataset.product; }));
     const form = document.getElementById('enquiry-form');
     form.addEventListener('submit', event => {

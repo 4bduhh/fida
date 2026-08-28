@@ -1,12 +1,14 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>FIDA CMS</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Bevan&family=DM+Mono&family=Manrope:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet"><link rel="stylesheet" href="app.css"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase-config.js"></script><script src="site.js"></script><script>if(sessionStorage.getItem('fida_admin_auth')!=='true'){window.location.href='login.html';}</script></head><body><header class="site-header"><a class="brand" href="index.html">FIDA <span class="brand-mark">FILAMENTS</span> <small style="font:10px DM Mono">CMS</small></a><nav class="site-nav" style="display:flex"><a href="index.html">View website ↗</a></nav></header><main><section class="page-hero animate-entrance"><p class="eyebrow">CONTENT MANAGEMENT</p><h1>FIDA <em>dashboard.</em></h1><p class="lead" id="connection">Checking Supabase connection…</p></section><section class="content"><div class="stats animate-entrance delay-1"><div class="stat"><strong id="enquiry-count">—</strong><span>Total enquiries</span></div><div class="stat"><strong id="new-count">—</strong><span>New enquiries</span></div></div><div class="animate-entrance delay-2" style="margin-top:70px"><p class="eyebrow">RECENT ENQUIRIES</p><div class="resource-list" id="enquiries"><div class="resource"><p>Connect Supabase to view enquiries.</p></div></div></div></section></main><script>
-  document.getElementById('connection').textContent = 'Using Local Database (LocalStorage)';
-  
-  function load() {
-    const enquiries = JSON.parse(localStorage.getItem('fida-enquiries') || '[]');
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>FIDA CMS</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Bevan&family=DM+Mono&family=Manrope:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet"><link rel="stylesheet" href="app.css"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase-config.js"></script><script src="site.js"></script><script>if(sessionStorage.getItem('fida_admin_auth')!=='true'){window.location.href='login.html';}</script></head><body><header class="site-header"><a class="brand" href="index.html">FIDA <span class="brand-mark">FILAMENTS</span> <small style="font:10px DM Mono">CMS</small></a><nav class="site-nav" style="display:flex"><a href="index.html">View website ↗</a></nav></header><main><section class="page-hero animate-entrance"><p class="eyebrow">CONTENT MANAGEMENT</p><h1>FIDA <em>dashboard.</em></h1><p class="lead" id="connection">Checking Supabase connection…</p></section><section class="content"><div class="stats animate-entrance delay-1"><div class="stat"><strong id="enquiry-count">—</strong><span>Total enquiries</span></div><div class="stat"><strong id="new-count">—</strong><span>New enquiries</span></div></div><div class="animate-entrance delay-2" style="margin-top:70px"><p class="eyebrow">RECENT ENQUIRIES</p><div class="resource-list" id="enquiries"><div class="resource"><p>Connect Supabase to view enquiries.</p></div></div></div><div class="animate-entrance delay-3" style="margin-top:70px"><div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;margin-bottom:20px"><p class="eyebrow" style="margin:0">PRODUCTS</p><button class="button" type="button" id="add-product-btn">+ Add product</button></div><div class="form-panel" id="product-form-panel" hidden style="margin-bottom:30px"><form id="product-form" class="form-grid"><input type="hidden" id="p-id"><div class="field"><label>Name</label><input id="p-name" required></div><div class="field"><label>Category</label><input id="p-category" required></div><div class="field"><label>Material</label><input id="p-material"></div><div class="field"><label>Slug (auto from name)</label><input id="p-slug"></div><div class="field full"><label>Description</label><textarea id="p-description"></textarea></div><div class="field"><label>Primary image</label><div class="dropzone" id="drop-image"><input type="file" id="file-image" accept="image/*" hidden><div class="dropzone-preview" id="preview-image"></div><p class="dropzone-hint" id="hint-image">Drag & drop an image here, or click to browse</p></div><input type="hidden" id="p-image"></div><div class="field"><label>Second image (hover)</label><div class="dropzone" id="drop-image2"><input type="file" id="file-image2" accept="image/*" hidden><div class="dropzone-preview" id="preview-image2"></div><p class="dropzone-hint" id="hint-image2">Drag & drop an image here, or click to browse</p></div><input type="hidden" id="p-image2"></div><div class="field full"><label>Applications (comma separated)</label><input id="p-applications" placeholder="Fishing lines, Technical nets"></div><div class="field"><label>Published on website?</label><select id="p-published"><option value="true">Yes, show on website</option><option value="false">No, save as draft</option></select></div><div class="field full" style="display:flex;gap:10px;margin-top:6px"><button class="button" type="submit">Save product</button><button type="button" id="cancel-product-btn" style="background:transparent;border:1px solid var(--line);border-radius:999px;padding:13px 20px;font-weight:800;font-size:12px;cursor:pointer;color:var(--ink)">Cancel</button></div></form></div><div id="products-status" style="color:var(--muted);font-size:13px;margin-bottom:14px"></div><div class="resource-list" id="products-list"></div></div></section></main><script>
+  async function load() {
+    document.getElementById('connection').textContent = 'Checking Supabase connection…';
+    const { list: enquiries, remote } = await FidaData.enquiries();
+    document.getElementById('connection').textContent = remote
+      ? 'Connected to Supabase — showing live enquiries'
+      : 'Supabase not connected — showing enquiries saved on this device only';
     document.getElementById('enquiry-count').textContent = enquiries.length;
     document.getElementById('new-count').textContent = enquiries.filter(e => e.status === 'new' || !e.status).length;
   
-    const sorted = enquiries.sort((a, b) => new Date(b.created_at || b.createdAt) - new Date(a.created_at || a.createdAt));
+    const sorted = enquiries;
   
     document.getElementById('enquiries').innerHTML = sorted.length ? sorted.map(x => {
       const wa = (x.whatsapp || x.phone || '').replace(/[^0-9+]/g, '');
@@ -56,10 +58,145 @@
   
   load();
   
-  window.deleteEnquiry = function(id) {
-    const enquiries = JSON.parse(localStorage.getItem('fida-enquiries') || '[]');
-    const updated = enquiries.filter(e => e.id !== id);
-    localStorage.setItem('fida-enquiries', JSON.stringify(updated));
+  window.deleteEnquiry = async function(id) {
+    if (!confirm('Delete this enquiry?')) return;
+    await FidaData.deleteEnquiry(id);
     load();
   };
+
+  function setPreview(key, url) {
+    const preview = document.getElementById('preview-' + key);
+    const hint = document.getElementById('hint-' + key);
+    if (url) { preview.innerHTML = `<img src="${url}" alt="">`; hint.textContent = 'Click or drop to replace'; }
+    else { preview.innerHTML = ''; hint.textContent = 'Drag & drop an image here, or click to browse'; }
+  }
+
+  function setupDropzone(key) {
+    const zone = document.getElementById('drop-' + key);
+    const fileInput = document.getElementById('file-' + key);
+    const hiddenInput = document.getElementById('p-' + key);
+    const hint = document.getElementById('hint-' + key);
+
+    async function handleFile(file) {
+      if (!file || !file.type.startsWith('image/')) return;
+      setPreview(key, URL.createObjectURL(file));
+      zone.classList.add('uploading');
+      hint.textContent = 'Uploading…';
+      const { url, error } = await FidaData.uploadImage(file);
+      zone.classList.remove('uploading');
+      if (error) { alert('Image upload failed: ' + (error.message || error)); setPreview(key, hiddenInput.value); return; }
+      hiddenInput.value = url;
+      setPreview(key, url);
+    }
+
+    zone.addEventListener('click', () => fileInput.click());
+    fileInput.addEventListener('change', () => handleFile(fileInput.files[0]));
+    zone.addEventListener('dragover', event => { event.preventDefault(); zone.classList.add('drag-over'); });
+    zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+    zone.addEventListener('drop', event => {
+      event.preventDefault(); zone.classList.remove('drag-over');
+      handleFile(event.dataTransfer.files[0]);
+    });
+  }
+  setupDropzone('image');
+  setupDropzone('image2');
+
+  const productForm = document.getElementById('product-form');
+  const productPanel = document.getElementById('product-form-panel');
+  const productsStatus = document.getElementById('products-status');
+  let slugTouched = false;
+
+  function slugify(text) { return text.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''); }
+
+  document.getElementById('p-name').addEventListener('input', event => {
+    if (!slugTouched) document.getElementById('p-slug').value = slugify(event.target.value);
+  });
+  document.getElementById('p-slug').addEventListener('input', () => { slugTouched = true; });
+
+  function openProductForm(product) {
+    productForm.reset();
+    slugTouched = false;
+    document.getElementById('p-id').value = product?.id || '';
+    document.getElementById('p-name').value = product?.name || '';
+    document.getElementById('p-category').value = product?.category || '';
+    document.getElementById('p-material').value = product?.material || '';
+    document.getElementById('p-slug').value = product?.slug || '';
+    document.getElementById('p-description').value = product?.description || '';
+    document.getElementById('p-image').value = product?.image_url || '';
+    document.getElementById('p-image2').value = product?.image2_url || '';
+    setPreview('image', product?.image_url || '');
+    setPreview('image2', product?.image2_url || '');
+    document.getElementById('p-applications').value = (product?.applications || []).join(', ');
+    document.getElementById('p-published').value = String(product?.is_published !== false);
+    if (product?.slug) slugTouched = true;
+    productPanel.hidden = false;
+    productPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  document.getElementById('add-product-btn').addEventListener('click', () => openProductForm(null));
+  document.getElementById('cancel-product-btn').addEventListener('click', () => { productPanel.hidden = true; productForm.reset(); });
+
+  productForm.addEventListener('submit', async event => {
+    event.preventDefault();
+    const submitBtn = productForm.querySelector('button[type=submit]');
+    submitBtn.disabled = true; submitBtn.textContent = 'Saving…';
+    const payload = {
+      id: document.getElementById('p-id').value || undefined,
+      name: document.getElementById('p-name').value.trim(),
+      category: document.getElementById('p-category').value.trim(),
+      material: document.getElementById('p-material').value.trim() || null,
+      slug: document.getElementById('p-slug').value.trim() || slugify(document.getElementById('p-name').value),
+      description: document.getElementById('p-description').value.trim() || null,
+      image_url: document.getElementById('p-image').value.trim() || null,
+      image2_url: document.getElementById('p-image2').value.trim() || null,
+      applications: document.getElementById('p-applications').value.split(',').map(s => s.trim()).filter(Boolean),
+      is_published: document.getElementById('p-published').value === 'true'
+    };
+    const { error } = await FidaData.saveProduct(payload);
+    submitBtn.disabled = false; submitBtn.textContent = 'Save product';
+    if (error) { alert('Could not save product: ' + (error.message || error)); return; }
+    productPanel.hidden = true;
+    productForm.reset();
+    loadProducts();
+  });
+
+  window.editProduct = function(id) {
+    const product = window.__products.find(p => p.id === id);
+    if (product) openProductForm(product);
+  };
+
+  window.deleteProduct = async function(id) {
+    if (!confirm('Delete this product?')) return;
+    const { error } = await FidaData.deleteProduct(id);
+    if (error) { alert('Could not delete: ' + (error.message || error)); return; }
+    loadProducts();
+  };
+
+  window.togglePublish = async function(id, current) {
+    const { error } = await FidaData.saveProduct({ id, is_published: !current });
+    if (error) { alert('Could not update: ' + (error.message || error)); return; }
+    loadProducts();
+  };
+
+  async function loadProducts() {
+    const { list, remote } = await FidaData.allProducts();
+    window.__products = list;
+    productsStatus.textContent = remote
+      ? `${list.length} product${list.length === 1 ? '' : 's'} in Supabase`
+      : 'Supabase not connected — connect it to add or manage products.';
+    document.getElementById('products-list').innerHTML = list.length ? list.map(p => `
+      <div class="resource">
+        <div>
+          <h3>${p.name} ${p.is_published === false ? '<span style="font-size:10px;color:#e79a3d;background:#fff3e0;padding:2px 8px;border-radius:999px;vertical-align:middle;">DRAFT</span>' : ''}</h3>
+          <p>${p.category}${p.material ? ' · ' + p.material : ''}</p>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button onclick="togglePublish('${p.id}', ${p.is_published !== false})" style="background:var(--pale);color:var(--purple);border:0;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:600;cursor:pointer;">${p.is_published === false ? 'Publish' : 'Unpublish'}</button>
+          <button onclick="editProduct('${p.id}')" style="background:var(--pale);color:var(--ink);border:0;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:600;cursor:pointer;">Edit</button>
+          <button onclick="deleteProduct('${p.id}')" style="background:#fff0f0;color:#e74c3c;border:1px solid #f5c6c6;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:600;cursor:pointer;">Delete</button>
+        </div>
+      </div>`).join('') : '<div style="padding:24px;color:#6f8588;">No products yet — click "+ Add product" to create one.</div>';
+  }
+
+  loadProducts();
   </script></body></html>

@@ -7,11 +7,30 @@ window.FidaData = (() => {
     { name: 'Nylon Hanks', category: 'Hanks', slug: 'hanks', description: 'Hank-wound monofilament, ready for the trade and hand-net makers.', material: 'Nylon', image: 'Nylon Hanks.jpg', image2: 'Nylon Hanks Stacked.jpg' },
     { name: 'Multifilament Fishing Net', category: 'Fishing Nets', slug: 'multifilament-fishing-net', description: 'Reliable, durable netting for commercial fishing.', material: 'Nylon', image: 'Multifilament Fishing Net.jpg', image2: 'Multifilament Fishing Net.jpg' }
   ];
-  async function products() { const db = client(); if (!db) return fallbackProducts; const { data, error } = await db.from('products').select('*').eq('is_published', true).order('name'); return error ? fallbackProducts : data; }
+  function normalizeProduct(p) { return { ...p, image: p.image || p.image_url || null, image2: p.image2 || p.image2_url || null }; }
+  function imgSrc(value, name) { const v = value || `${name}.jpg`; return /^https?:\/\//i.test(v) ? v : `asserts/${v}`; }
+  async function products() { const db = client(); if (!db) return fallbackProducts; const { data, error } = await db.from('products').select('*').eq('is_published', true).order('name'); return error ? fallbackProducts : data.map(normalizeProduct); }
   async function product(slug) { const list = await products(); return list.find(item => item.slug === slug) || list[0]; }
   async function createEnquiry(payload) { const record = { ...payload, status: 'new', source: location.pathname, created_at: new Date().toISOString() }; const db = client(); if (db) { const { error } = await db.from('enquiries').insert(record); if (!error) return { remote: true }; }
     const stored = JSON.parse(localStorage.getItem('fida-enquiries') || '[]'); stored.push({ ...record, id: crypto.randomUUID?.() || Date.now().toString() }); localStorage.setItem('fida-enquiries', JSON.stringify(stored)); return { remote: false }; }
-  return { configured, products, product, createEnquiry };
+  async function enquiries() { const db = client(); if (db) { const { data, error } = await db.from('enquiries').select('*').order('created_at', { ascending: false }); if (!error) return { list: data, remote: true }; }
+    const stored = JSON.parse(localStorage.getItem('fida-enquiries') || '[]'); stored.sort((a, b) => new Date(b.created_at || b.createdAt) - new Date(a.created_at || a.createdAt)); return { list: stored, remote: false }; }
+  async function deleteEnquiry(id) { const db = client(); if (db) { const { error } = await db.from('enquiries').delete().eq('id', id); if (!error) return true; }
+    const stored = JSON.parse(localStorage.getItem('fida-enquiries') || '[]'); localStorage.setItem('fida-enquiries', JSON.stringify(stored.filter(e => e.id !== id))); return true; }
+  async function allProducts() { const db = client(); if (!db) return { list: [], remote: false }; const { data, error } = await db.from('products').select('*').order('name'); return error ? { list: [], remote: false, error } : { list: data, remote: true }; }
+  async function saveProduct(payload) { const db = client(); if (!db) return { error: 'Supabase not connected' };
+    const record = { ...payload }; const id = record.id; delete record.id;
+    const { error } = id ? await db.from('products').update(record).eq('id', id) : await db.from('products').insert(record);
+    return { error }; }
+  async function deleteProduct(id) { const db = client(); if (!db) return { error: 'Supabase not connected' }; const { error } = await db.from('products').delete().eq('id', id); return { error }; }
+  async function uploadImage(file) { const db = client(); if (!db) return { error: 'Supabase not connected' };
+    const ext = (file.name.split('.').pop() || 'jpg').toLowerCase();
+    const path = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+    const { error } = await db.storage.from('product-images').upload(path, file, { upsert: false, cacheControl: '3600' });
+    if (error) return { error };
+    const { data } = db.storage.from('product-images').getPublicUrl(path);
+    return { url: data.publicUrl }; }
+  return { configured, products, product, createEnquiry, enquiries, deleteEnquiry, allProducts, saveProduct, deleteProduct, uploadImage, imgSrc };
 })();
 
 document.addEventListener('DOMContentLoaded', () => {
