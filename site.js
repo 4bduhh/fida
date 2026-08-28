@@ -11,11 +11,16 @@ window.FidaData = (() => {
   function imgSrc(value, name) { const v = value || `${name}.jpg`; return /^https?:\/\//i.test(v) ? v : `asserts/${v}`; }
   async function products() { const db = client(); if (!db) return fallbackProducts; const { data, error } = await db.from('products').select('*').eq('is_published', true).order('name'); return error ? fallbackProducts : data.map(normalizeProduct); }
   async function product(slug) { const list = await products(); return list.find(item => item.slug === slug) || list[0]; }
-  async function createEnquiry(payload) { const record = { ...payload, status: 'new', source: location.pathname, created_at: new Date().toISOString() }; const db = client(); if (db) { const { error } = await db.from('enquiries').insert(record); if (!error) return { remote: true }; }
+  /* Enquiries now live in Firebase Firestore (see firebase-config.js). Products stay on Supabase. */
+  async function createEnquiry(payload) { const record = { ...payload, status: 'new', source: location.pathname, created_at: new Date().toISOString() };
+    const fs = window.FidaFirestore;
+    if (fs) { try { await fs.collection('enquiries').add(record); return { remote: true }; } catch (err) { console.error('Firestore enquiry save failed:', err); } }
     const stored = JSON.parse(localStorage.getItem('fida-enquiries') || '[]'); stored.push({ ...record, id: crypto.randomUUID?.() || Date.now().toString() }); localStorage.setItem('fida-enquiries', JSON.stringify(stored)); return { remote: false }; }
-  async function enquiries() { const db = client(); if (db) { const { data, error } = await db.from('enquiries').select('*').order('created_at', { ascending: false }); if (!error) return { list: data, remote: true }; }
+  async function enquiries() { const fs = window.FidaFirestore;
+    if (fs) { try { const snap = await fs.collection('enquiries').orderBy('created_at', 'desc').get(); return { list: snap.docs.map(doc => ({ id: doc.id, ...doc.data() })), remote: true }; } catch (err) { console.error('Firestore enquiries fetch failed:', err); } }
     const stored = JSON.parse(localStorage.getItem('fida-enquiries') || '[]'); stored.sort((a, b) => new Date(b.created_at || b.createdAt) - new Date(a.created_at || a.createdAt)); return { list: stored, remote: false }; }
-  async function deleteEnquiry(id) { const db = client(); if (db) { const { error } = await db.from('enquiries').delete().eq('id', id); if (!error) return true; }
+  async function deleteEnquiry(id) { const fs = window.FidaFirestore;
+    if (fs) { try { await fs.collection('enquiries').doc(id).delete(); return true; } catch (err) { console.error('Firestore enquiry delete failed:', err); } }
     const stored = JSON.parse(localStorage.getItem('fida-enquiries') || '[]'); localStorage.setItem('fida-enquiries', JSON.stringify(stored.filter(e => e.id !== id))); return true; }
   async function allProducts() { const db = client(); if (!db) return { list: [], remote: false }; const { data, error } = await db.from('products').select('*').order('name'); return error ? { list: [], remote: false, error } : { list: data, remote: true }; }
   async function saveProduct(payload) { const db = client(); if (!db) return { error: 'Supabase not connected' };
