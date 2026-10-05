@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="FIDA FILAMENTS — precision monofilament yarn, hanks and fishing nets, 0.10mm to 4.50mm.">
+  <meta name="description" content="FIDA FILAMENTS — precision monofilament yarn, hanks and fishing nets, all sizes available.">
   <title>FIDA FILAMENTS | Monofilament Yarn, Hanks &amp; Fishing Nets</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -955,21 +955,14 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: .42;
+      opacity: 1;
     }
 
     .intro-fallback {
       position: absolute;
       inset: 0;
       background: radial-gradient(circle at 70% 25%, #57a2ba 0, transparent 30%), radial-gradient(circle at 25% 75%, #066684 0, transparent 30%), linear-gradient(130deg, #102329, #224854);
-    }
-
-    .intro-fibres {
-      position: absolute;
-      inset: -25%;
-      background: repeating-linear-gradient(115deg, transparent 0 25px, rgba(255, 255, 255, .08) 26px 28px, transparent 29px 76px);
-      animation: fibreSlide 10s linear infinite;
-      transform: rotate(-12deg);
+      z-index: -1;
     }
 
     .intro-content {
@@ -2779,7 +2772,41 @@
       }
     }
   </style>
-</head>
+<style id="fida-brand-fix">
+.brand{gap:14px;font-size:clamp(1.05rem,4.2vw,1.35rem)}
+.brand-logo{width:auto!important;height:64px!important;max-width:none!important;border-radius:4px!important;object-fit:contain!important;box-shadow:0 4px 14px #00688833!important}
+.brand:hover .brand-logo{transform:none!important}
+.brand-name{white-space:nowrap}
+.brand-name .brand-mark{font-size:inherit!important;opacity:1!important}
+.loader-mark{width:auto!important;height:.9em!important;border:0!important;border-radius:6px!important;object-fit:contain!important;background:none!important}
+@media(max-width:700px){.brand-logo{height:48px!important}}
+.brand-name,.brand-name .brand-mark{color:#009fd1!important}
+
+.pin-stage{background:#fff!important;color:var(--ink)!important}
+.pin-heading .eyebrow{color:#009fd1!important}
+.pin-heading h2{color:var(--ink)!important}
+.pin-stage .pin-rail .product-card,.pin-stage .pin-rail .product-card:nth-child(n){display:flex;flex-direction:column;height:min(60vh,540px);width:min(70vw,420px);padding:22px;background:#f4fbfe;border:1px solid #d4e9f0;box-shadow:0 18px 40px -22px rgba(0,104,136,.35)}
+.pin-stage .product-num{order:0;color:#5f7c86}
+.pin-stage .pin-rail .product-card .product-visual{order:1;position:relative!important;right:auto!important;bottom:auto!important;width:100%!important;aspect-ratio:auto!important;flex:0 0 46%;margin:14px 0 16px;border:0!important;border-radius:16px!important;transform:none!important;background-size:cover!important;background-position:center!important;background-color:#e3f3f8}
+.pin-stage .pin-rail .product-card:hover .product-visual{transform:none!important}
+.pin-stage .product-card h3{order:2;max-width:none;margin:0 0 6px;font-size:clamp(1.5rem,2.2vw,2rem)}
+.pin-stage .product-card p{order:3;max-width:none;font-size:14px;line-height:1.5}
+.pin-stage .product-card .product-link{order:4;position:static;margin-top:auto;padding-top:10px}
+@media(max-width:700px){.pin-stage .pin-rail .product-card,.pin-stage .pin-rail .product-card:nth-child(n){width:82vw;height:480px}}
+.quality-video{object-fit:cover;object-position:center}
+
+.quality{min-height:0!important}
+.quality-art{min-height:340px!important;max-height:460px}
+.quality-text{padding:clamp(28px,4vw,56px)!important}
+.quality-text .display{font-size:clamp(1.9rem,3.3vw,3.1rem)!important}
+.quality-text .section-copy{font-size:15px;margin:14px 0 0}
+.quality-points{margin-top:22px!important;gap:16px!important}
+.quality-points .quality-point b,.quality-points .quality-point span{font-size:13px}
+@media(max-width:900px){.quality-art{min-height:240px!important;max-height:300px}}
+
+.pin-stage{margin-bottom:clamp(56px,10vh,120px)}
+.pin-sticky{box-sizing:border-box;padding-bottom:clamp(24px,5vh,56px)}
+</style></head>
 
 <body>
   <div id="loader" aria-label="Loading FIDA Filaments">
@@ -2793,21 +2820,10 @@
     </div>
   </div>
   <section class="intro" id="intro" aria-label="FIDA introduction video">
-    <!-- Replace factory-showreel.mp4 with your future 8-second factory video. -->
-    <video class="intro-video" id="intro-video" muted playsinline preload="metadata">
-      <source src="factory-showreel.mp4" type="video/mp4">
-    </video>
     <div class="intro-fallback"></div>
-    <div class="intro-fibres"></div>
-    <div class="intro-content">
-      <div class="intro-kicker"><span class="pulse"></span> Nagercoil, Tamil Nadu · India</div>
-      <h1 class="intro-title">Materials made to <em>move.</em></h1>
-      <div class="intro-bottom">
-        <p>Every strand is a promise of consistency, created for the real working world.</p><button class="skip-intro"
-          id="skip-intro">Enter FIDA <span aria-hidden="true">↘</span></button>
-      </div>
-    </div>
-    <div class="intro-timer" id="intro-timer">00:08</div>
+    <video class="intro-video" id="intro-video" autoplay muted playsinline preload="auto">
+      <source src="fida-intro.mp4" type="video/mp4">
+    </video>
   </section>
   <header>
     <a class="brand" href="#top" aria-label="FIDA home"><img class="brand-logo" src="asserts/fida-logo.png" alt="FIDA Filaments logo"><span class="brand-text"><span class="brand-name">FIDA <span class="brand-mark">FILAMENTS</span></span><span class="brand-tagline">Private Limited</span></span></a>
@@ -2844,11 +2860,9 @@
         </div>
       </div>
       <div class="hero-content reveal">
-        <p class="eyebrow">FIDA FILAMENTS PRIVATE LIMITED · 3RD GENERATION · SERVING INDIA &amp; ASIA</p>
+        <p class="eyebrow">FIDA FILAMENTS PRIVATE LIMITED · SERVING INDIA &amp; ASIA</p>
         <h1><span>Stronger by</span><span><em>every</em> strand.</span></h1>
-        <p class="hero-sub">Precision monofilament yarn, hanks and fishing nets, engineered in sizes from 0.10mm to
-          4.50mm for reliable quality — manufactured by a third-generation Indian family business, serving customers
-          across India and Asia.</p>
+        <p class="hero-sub">Precision nylon monofilament yarn, hanks and fishing nets, available in all sizes for reliable quality — serving customers across India and Asia.</p>
         <a class="button" href="#products">Explore our range <span class="button-arrow">↓</span></a>
       </div>
       <div class="hero-meta">SCROLL TO DISCOVER</div>
@@ -2865,10 +2879,10 @@
               <label for="hq-product">Product</label>
               <select id="hq-product" name="product" required>
                 <option value="">Select a product</option>
-                <option>Monofilament Yarn</option>
+                <option value="Monofilament Yarn">Nylon Monofilament Yarn</option>
+                <option value="Multifilament Yarn">Multifilament Yarn</option>
                 <option>Hanks</option>
                 <option>Fishing Nets</option>
-                <option>Saree &amp; Weaving Yarn</option>
                 <option>Decoration Items</option>
                 <option>Flat Boards</option>
                 <option>Agricultural Multipurpose</option>
@@ -2885,8 +2899,8 @@
       </div>
     </section>
     <div class="marquee">
-      <div class="marquee-track">QUALITY OVER QUANTITY · MONOFILAMENT YARN · HANKS · FISHING NETS · 0.10MM – 4.50MM ·
-        QUALITY OVER QUANTITY · MONOFILAMENT YARN · HANKS · FISHING NETS · 0.10MM – 4.50mm · </div>
+      <div class="marquee-track">QUALITY OVER QUANTITY · NYLON MONOFILAMENT · MULTIFILAMENT YARN · HANKS · FISHING NETS · ALL SIZES AVAILABLE ·
+        QUALITY OVER QUANTITY · NYLON MONOFILAMENT · MULTIFILAMENT YARN · HANKS · FISHING NETS · ALL SIZES AVAILABLE · </div>
     </div>
     <section class="intro-section">
       <div class="spool-dock" id="spool-dock" aria-hidden="true"></div>
@@ -2904,9 +2918,9 @@
           <h2>One fibre.<br>Infinite <em>possibility.</em></h2>
         </div>
         <div class="pin-rail" id="pin-rail">
-          <article class="product-card"><span class="product-num">01 — MONOFILAMENT YARN</span>
-            <h3>Monofilament yarn</h3>
-            <p>Precision-drawn monofilament, 0.10mm to 4.50mm, for fishing lines and technical nets.</p>
+          <article class="product-card"><span class="product-num">01 — NYLON MONOFILAMENT YARN</span>
+            <h3>Nylon monofilament yarn</h3>
+            <p>Precision-drawn nylon monofilament, all sizes available, for fishing nets and fishing lines.</p>
             <div class="product-visual" style="--img1:url('asserts/Monofilament Yarn Green.jpg'); --img2:url('asserts/Monofilament Yarn Blue.jpg');">
             </div><a class="product-link quote-product" data-product="Monofilament Yarn" href="#enquiry">Explore category ↗</a>
           </article>
@@ -2924,14 +2938,17 @@
             </div><a class="product-link quote-product" data-product="Fishing Nets" href="#enquiry">Explore category
               ↗</a>
           </article>
+          <article class="product-card"><span class="product-num">04 — MULTIFILAMENT YARN</span>
+            <h3>Multifilament yarn</h3>
+            <p>Fabric-type multifilament yarn — a different concept from nylon monofilament — used for fishing nets.</p>
+            <div class="product-visual" style="--img1:url('asserts/Multifilament Fishing Net.jpg'); --img2:url('asserts/Multifilament Fishing Net.jpg');">
+            </div><a class="product-link quote-product" data-product="Multifilament Yarn" href="#enquiry">Explore category ↗</a>
+          </article>
         </div>
       </div>
     </section>
     <section class="quality" id="quality">
-      <div class="quality-art"><video class="quality-video" autoplay muted loop playsinline preload="auto"
-          poster="asserts/fida.jpeg">
-          <source src="asserts/Nylon_Monofilament.mp4" type="video/mp4">
-        </video>
+      <div class="quality-art"><img class="quality-video" src="asserts/fida.jpeg" alt="FIDA monofilament drawing machine">
         <div class="quality-art-overlay"></div>
         <div class="quality-art-caption">Precision woven<br>into every metre</div>
       </div>
@@ -2945,30 +2962,24 @@
               use.</span></div>
           <div class="quality-point"><b>Consistent output</b><span>Process-focused production from spool to
               shipment.</span></div>
-          <div class="quality-point"><b>Custom capability</b><span>Monofilament yarn from 0.10mm to 4.50mm, tailored to
-              you.</span></div>
+          <div class="quality-point"><b>All sizes available</b><span>Every size you need, tailored to you.</span></div>
           <div class="quality-point"><b>B2B ready</b><span>Responsive support for distributors and industrial
               buyers.</span></div>
         </div>
       </div>
     </section>
     <section class="intro-section">
-      <div class="intro-visual"><img src="asserts/yarn-manufacturing.jpg" alt="FIDA monofilament yarn spool"></div>
+      <div class="intro-visual"><img src="asserts/3rd.jpeg" alt="FIDA monofilament yarn spool"></div>
       <div class="vertical-label">04 / WHY FIDA</div>
       <div class="reveal">
-        <p class="eyebrow">Three generations. One standard.</p>
-        <h2 class="statement">3rd generation, <em>built to scale.</em><small>FIDA is a third-generation
-            manufacturer based in Nagercoil, Tamil Nadu — carrying forward decades of filament-making know-how while
-            serving customers across India and export markets throughout Asia, at every size from 0.10mm to
-            4.50mm.</small></h2>
+        <p class="eyebrow">India &amp; Asia. One standard.</p>
+        <h2 class="statement">Made in Nagercoil, <em>built to scale.</em><small>FIDA is a manufacturer based in Nagercoil, Tamil Nadu, serving customers across India and export markets throughout Asia. All sizes are available.</small></h2>
         <div class="quality-points" style="max-width:640px">
-          <div class="quality-point"><b>3rd generation</b><span>Precision manufacturing expertise, refined over
-              decades.</span></div>
+          <div class="quality-point"><b>Made in Nagercoil</b><span>Precision manufacturing in Tamil Nadu, India.</span></div>
           <div class="quality-point"><b>India &amp; Asia</b><span>Domestic distribution plus export service across
               Asian markets.</span></div>
-          <div class="quality-point"><b>0.10mm – 4.50mm</b><span>Our full monofilament size range, made to
-              order.</span></div>
-          <div class="quality-point"><b>Multipurpose yarn</b><span>Fishing, industrial, saree design, décor and
+          <div class="quality-point"><b>All sizes available</b><span>Made to order, in every size you need.</span></div>
+          <div class="quality-point"><b>Multipurpose yarn</b><span>Fishing, industrial, décor and
               agricultural use.</span></div>
         </div>
       </div>
@@ -2986,12 +2997,12 @@
         <article class="app">
           <div class="app-icon"><img src="asserts/icons/fishing.png" alt="" loading="lazy"></div>
           <h3>Commercial fishing</h3>
-          <p>Gill nets, trawl nets and fishing lines built from precision monofilament.</p>
+          <p>Gill nets, trawl nets and fishing lines built from nylon monofilament and multifilament yarn.</p>
         </article>
         <article class="app">
           <div class="app-icon"><img src="asserts/icons/aquaculture.png" alt="" loading="lazy"></div>
           <h3>Aquaculture</h3>
-          <p>Cage nets and farming solutions using durable monofilament yarn.</p>
+          <p>Cage nets and farming solutions using durable nylon monofilament yarn.</p>
         </article>
         <article class="app">
           <div class="app-icon"><img src="asserts/icons/marine.png" alt="" loading="lazy"></div>
@@ -3001,12 +3012,7 @@
         <article class="app">
           <div class="app-icon"><img src="asserts/icons/yarn-manufacturing.png" alt="" loading="lazy"></div>
           <h3>Yarn manufacturing</h3>
-          <p>Custom-drawn monofilament and multifilament yarn to your exact specification.</p>
-        </article>
-        <article class="app">
-          <div class="app-icon"><img src="asserts/icons/saree-weaving.png" alt="" loading="lazy"></div>
-          <h3>Saree &amp; weaving yarn</h3>
-          <p>Fine-count yarn supplied to saree and traditional weaving units for design work.</p>
+          <p>Custom-drawn nylon monofilament yarn and fabric-type multifilament yarn for fishing nets, to your exact specification.</p>
         </article>
         <article class="app">
           <div class="app-icon"><img src="asserts/icons/decoration-items.png" alt="" loading="lazy"></div>
@@ -3032,7 +3038,7 @@
           <h2>Tell us what you need. We’ll make it <em>work.</em></h2>
         </div>
         <div class="contact-detail"><strong>FIDA FILAMENTS PRIVATE LIMITED</strong>4/189, Gurukulam Road, Erumpukadu
-          Post,<br>Thammathukonam, Nagercoil, Tamil Nadu — 629004<br><br>+91 4652 265915 &nbsp;·&nbsp;
+          Post,<br>Thammathukonam, Nagercoil, Tamil Nadu — 629004<br><br>+91 88703 13671 &nbsp;·&nbsp;
           fidafilaments@gmail.com</div>
       </div>
       <div class="form-panel">
@@ -3052,12 +3058,12 @@
               <div class="field full"><label for="product">Product required</label><select id="product" name="product"
                   required>
                   <option value="">Select a product category</option>
-                  <option>Monofilament Yarn</option>
+                  <option value="Monofilament Yarn">Nylon Monofilament Yarn</option>
+                <option value="Multifilament Yarn">Multifilament Yarn</option>
                   <option>Hanks</option>
                   <option>Fishing Nets</option>
                   <option>Yarn Manufacturing</option>
-                  <option>Saree &amp; Weaving Yarn</option>
-                  <option>Decoration Items</option>
+                    <option>Decoration Items</option>
                   <option>Flat Boards</option>
                   <option>Agricultural Multipurpose</option>
                 </select></div>
@@ -3088,8 +3094,8 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <p class="footer-logo">FIDA FILAMENTS</p>
-        <p>Precision monofilament yarn, hanks and fishing nets from 0.10mm to 4.50mm — engineered in
-          Nagercoil for performance across marine, agriculture, weaving and industrial applications.</p>
+        <p>Precision nylon monofilament yarn, hanks and fishing nets in all available sizes — engineered in
+          Nagercoil for performance across marine, agriculture and industrial applications.</p>
         <p class="footer-cta-note">Follow us for product drops, factory updates and export news.</p>
         <div class="footer-social-row" style="margin-top:16px;">
           <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="FIDA Filaments on Instagram">
@@ -3099,7 +3105,7 @@
               <circle cx="17.5" cy="6.5" r="1" fill="#dcedf2" stroke="none"></circle>
             </svg>
           </a>
-          <a href="https://wa.me/914652265915" target="_blank" rel="noopener" aria-label="Chat with FIDA Filaments on WhatsApp">
+          <a href="https://wa.me/918870313671" target="_blank" rel="noopener" aria-label="Chat with FIDA Filaments on WhatsApp">
             <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <path d="M3 21l1.6-4.8A8.4 8.4 0 1 1 8.8 19.4L3 21z"></path>
               <path d="M8.5 9.7c.3 2.6 2.4 4.7 5 5" stroke-linecap="round"></path>
@@ -3123,11 +3129,11 @@
       <div class="footer-contact">
         <p class="footer-heading">Get in touch</p>
         <div class="footer-contact-list">
-          <a href="tel:+914652265915">
+          <a href="tel:+918870313671">
             <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
               <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"></path>
             </svg>
-            <span>+91 4652 265915</span>
+            <span>+91 88703 13671</span>
           </a>
           <a href="mailto:fidafilaments@gmail.com">
             <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -3166,12 +3172,12 @@
     const loaderPercent = document.getElementById('loader-percent');
     const intro = document.getElementById('intro');
     const introVideo = document.getElementById('intro-video');
-    const introTimer = document.getElementById('intro-timer');
     let progress = 0;
     const loading = setInterval(() => { progress = Math.min(progress + Math.floor(Math.random() * 14) + 4, 100); loaderProgress.style.width = `${progress}%`; loaderPercent.textContent = `${String(progress).padStart(2, '0')}%`; if (progress === 100) { clearInterval(loading); setTimeout(() => loader.classList.add('done'), 300); } }, 120);
-    let seconds = 3;
-    const timer = setInterval(() => { seconds -= 1; introTimer.textContent = `00:0${Math.max(seconds, 0)}`; if (seconds <= 0) closeIntro(); }, 1000);
-    function closeIntro() { clearInterval(timer); introVideo.pause(); intro.classList.add('is-gone'); startHeroTimeline(); }
+    let introClosed = false;
+    function closeIntro() { if (introClosed) return; introClosed = true; introVideo.pause(); intro.classList.add('is-gone'); startHeroTimeline(); }
+    // Safety net in case autoplay is blocked or the video fails to fire 'ended'.
+    setTimeout(closeIntro, 12000);
     let heroTimelineStarted = false;
     function startHeroTimeline() {
       if (heroTimelineStarted) return;
@@ -3187,10 +3193,10 @@
     }
     const PRODUCT_IMAGES = {
       'Monofilament Yarn': 'asserts/Monofilament Yarn Green.jpg',
+      'Multifilament Yarn': 'asserts/Multifilament Fishing Net.jpg',
       'Hanks': 'asserts/Nylon Hanks.jpg',
       'Fishing Nets': 'asserts/Multifilament Fishing Net.jpg',
       'Yarn Manufacturing': 'asserts/products/yarn-manufacturing.jpg',
-      'Saree & Weaving Yarn': 'asserts/products/saree-weaving.jpg',
       'Decoration Items': 'asserts/products/decoration-items.jpg',
       'Flat Boards': 'asserts/products/flat-boards.jpg',
       'Agricultural Multipurpose': 'asserts/products/agricultural.jpg'
@@ -3344,7 +3350,7 @@
         hero.addEventListener('mouseleave', () => { tiltX = 0; tiltY = 0; requestRender(); });
       }
     })();
-    document.getElementById('skip-intro').addEventListener('click', closeIntro);
+    intro.addEventListener('click', closeIntro);
     introVideo.addEventListener('loadeddata', () => { introVideo.play().catch(() => { }); });
     introVideo.addEventListener('ended', closeIntro);
     const reveals = document.querySelectorAll('.reveal');
@@ -3366,6 +3372,7 @@
         rail.innerHTML = items.map((p, i) => {
           const num = String(i + 1).padStart(2, '0') + ' — ' + (p.category || '').toUpperCase();
           const img1 = FidaData.imgSrc(p.image, p.name);
+          p.description = (p.description || '').replace(/0\.10\s*mm\s*(to|–|-)\s*(1\.00|4\.50|4)\s*mm/gi, 'all sizes available');
           const img2 = FidaData.imgSrc(p.image2 || p.image, p.name);
           return `<article class="product-card"><span class="product-num">${num}</span>
             <h3>${p.name}</h3>
