@@ -1587,8 +1587,8 @@
 
     .hero h1 {
       margin: 0;
-      font-size: clamp(4rem, 10vw, 10rem);
-      line-height: .79;
+      font-size: clamp(2.8rem, 6.6vw, 6.6rem);
+      line-height: .82;
       letter-spacing: -.105em;
     }
 
@@ -2677,8 +2677,22 @@
         display: none;
       }
 
-      .hero-quote {
-        display: none;
+      .hero {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .hero-quote,
+      .hero.is-settled .hero-quote,
+      .hero-quote.idle-hidden {
+        position: relative;
+        top: auto;
+        right: auto;
+        width: 100%;
+        margin: 28px 0 40px;
+        opacity: 1 !important;
+        transform: none !important;
+        z-index: 2;
       }
 
       .pin-stage {
@@ -2806,6 +2820,36 @@
 
 .pin-stage{margin-bottom:clamp(56px,10vh,120px)}
 .pin-sticky{box-sizing:border-box;padding-bottom:clamp(24px,5vh,56px)}
+
+.hero-brand{margin:0 0 10px;font-family:"Bevan",serif;font-size:clamp(1.6rem,3.2vw,2.6rem);letter-spacing:.04em;color:#009fd1;line-height:1}
+.hero-call{margin:18px 0 0;font:500 13px "DM Mono",monospace;color:#48606a}
+.hero-call a{color:#0b5f7d;text-decoration:none;font-weight:700}
+.hero-call a:hover{text-decoration:underline}
+.contact-detail a{color:inherit;text-decoration:none}
+
+.hero h1{font-size:clamp(2.6rem,5.8vw,5.8rem)!important;line-height:.86!important}
+.hero h1 span:last-child::after{content:"";display:block;width:84px;height:6px;margin-top:18px;border-radius:99px;background:linear-gradient(90deg,#009fd1,#6fd6ff)}
+.hero-sub{margin:22px 0 26px!important;font-size:15px!important;line-height:1.65!important;max-width:440px}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;margin:0 0 22px;padding:7px 16px 7px 8px;border-radius:999px;background:#fff;border:1px solid #cfe8f1;box-shadow:0 8px 22px -12px rgba(0,104,136,.4)}
+.hero-badge img{height:30px;width:auto;border-radius:6px;object-fit:contain}
+.hero-badge b{font-family:"Bevan",serif;font-size:20px;letter-spacing:.04em;color:#009fd1;line-height:1}
+.hero-badge i{width:1px;height:18px;background:#cfe8f1}
+.hero-badge span{font:500 10.5px "DM Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:#48606a}
+.hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px}
+.hero-call{display:flex;align-items:center;gap:12px;margin:0!important;font:500 13px "DM Mono",monospace!important}
+.hero-call svg{flex:none;width:40px;height:40px;padding:11px;border-radius:50%;background:#e3f3f8;color:#009fd1;box-sizing:border-box}
+.hero-call span{display:flex;flex-direction:column;gap:2px}
+.hero-call a{color:#0f2530!important;font-weight:700;text-decoration:none}
+.hero-call a:hover{color:#009fd1!important;text-decoration:none!important}
+@media(max-width:700px){.hero-badge span{display:none}.hero-badge i{display:none}}
+
+@media(min-width:901px){
+ .spool-ghost{top:calc(50% - min(30vw,460px)/.794/2 + 24px);right:clamp(40px,8vw,150px);width:min(30vw,460px)}
+ .hero .hero-quote,.hero.is-settled .hero-quote{z-index:60;box-shadow:0 30px 70px -30px rgba(0,80,110,.35),0 0 0 1px #d8edf4}
+ .hero-content{max-width:min(600px,46vw)}
+}
+.hero-quote h3{color:#0f2530}
+.dev-credit{flex-basis:100%;text-align:center;margin-top:6px;opacity:.85}.dev-credit b{color:#6fd6ff;font-weight:700;letter-spacing:.04em}
 </style></head>
 
 <body>
@@ -2860,10 +2904,9 @@
         </div>
       </div>
       <div class="hero-content reveal">
-        <p class="eyebrow">FIDA FILAMENTS PRIVATE LIMITED · SERVING INDIA &amp; ASIA</p>
         <h1><span>Stronger by</span><span><em>every</em> strand.</span></h1>
         <p class="hero-sub">Precision nylon monofilament yarn, hanks and fishing nets, available in all sizes for reliable quality — serving customers across India and Asia.</p>
-        <a class="button" href="#products">Explore our range <span class="button-arrow">↓</span></a>
+        <div class="hero-actions"><a class="button" href="#products">Explore our range <span class="button-arrow">↓</span></a><div class="hero-call"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"/></svg><span><a href="tel:+919363492561">+91 93634 92561</a><a href="tel:+919363492565">+91 93634 92565</a></span></div></div>
       </div>
       <div class="hero-meta">SCROLL TO DISCOVER</div>
       <div class="hero-quote" id="hero-quote">
@@ -3038,7 +3081,7 @@
           <h2>Tell us what you need. We’ll make it <em>work.</em></h2>
         </div>
         <div class="contact-detail"><strong>FIDA FILAMENTS PRIVATE LIMITED</strong>4/189, Gurukulam Road, Erumpukadu
-          Post,<br>Thammathukonam, Nagercoil, Tamil Nadu — 629004<br><br>+91 88703 13671 &nbsp;·&nbsp;
+          Post,<br>Thammathukonam, Nagercoil, Tamil Nadu — 629004<br><br><a href="tel:+919363492561">+91 93634 92561</a> &nbsp;·&nbsp; <a href="tel:+919363492565">+91 93634 92565</a> &nbsp;·&nbsp;
           fidafilaments@gmail.com</div>
       </div>
       <div class="form-panel">
@@ -3105,7 +3148,7 @@
               <circle cx="17.5" cy="6.5" r="1" fill="#dcedf2" stroke="none"></circle>
             </svg>
           </a>
-          <a href="https://wa.me/918870313671" target="_blank" rel="noopener" aria-label="Chat with FIDA Filaments on WhatsApp">
+          <a href="https://wa.me/919363492561" target="_blank" rel="noopener" aria-label="Chat with FIDA Filaments on WhatsApp">
             <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <path d="M3 21l1.6-4.8A8.4 8.4 0 1 1 8.8 19.4L3 21z"></path>
               <path d="M8.5 9.7c.3 2.6 2.4 4.7 5 5" stroke-linecap="round"></path>
@@ -3129,11 +3172,17 @@
       <div class="footer-contact">
         <p class="footer-heading">Get in touch</p>
         <div class="footer-contact-list">
-          <a href="tel:+918870313671">
+          <a href="tel:+919363492561">
             <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
               <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"></path>
             </svg>
-            <span>+91 88703 13671</span>
+            <span>+91 93634 92561</span>
+          </a>
+          <a href="tel:+919363492565">
+            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"></path>
+            </svg>
+            <span>+91 93634 92565</span>
           </a>
           <a href="mailto:fidafilaments@gmail.com">
             <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -3164,6 +3213,7 @@
       <span>© <span id="year"></span> FIDA FILAMENTS PRIVATE LIMITED</span>
       <span>QUALITY OVER QUANTITY</span>
       <span>NAGERCOIL, INDIA</span>
+      <span class="dev-credit">Developed by <b>Combo Square</b></span>
     </div>
   </footer>
   <script>
