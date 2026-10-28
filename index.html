@@ -1667,7 +1667,7 @@
       right: -12%;
       width: 62vw;
       height: 62vw;
-      background: radial-gradient(circle, rgba(115, 83, 187, .22), rgba(115, 83, 187, 0) 68%);
+      background: radial-gradient(circle, rgba(0, 159, 209, .16), rgba(0, 159, 209, 0) 68%);
       filter: blur(6px);
       pointer-events: none;
       animation: heroGlow 9s ease-in-out infinite;
@@ -2850,6 +2850,93 @@
 }
 .hero-quote h3{color:#0f2530}
 .dev-credit{flex-basis:100%;text-align:center;margin-top:6px;opacity:.85}.dev-credit b{color:#6fd6ff;font-weight:700;letter-spacing:.04em}
+
+/* ===== HERO UPGRADE: bigger type + filled showcase ===== */
+.hero-stats{display:flex;flex-wrap:wrap;gap:14px 0;margin:30px 0 0;padding:0;list-style:none}
+.hero-stats li{display:flex;flex-direction:column;gap:6px;padding:0 24px;border-left:1px solid #c7e4ee}
+.hero-stats li:first-child{padding-left:0;border-left:0}
+.hero-stats b{font:400 clamp(24px,2.2vw,36px)/1 "Bevan",serif;letter-spacing:.02em;color:#009fd1}
+.hero-stats span{font:500 10.5px "DM Mono",monospace;letter-spacing:.12em;text-transform:uppercase;color:#48606a}
+.hero-thread,.hero-ghost,.hero-showcase,.hero-spin{display:none}
+@media(max-width:700px){
+  .hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:30px}
+  .hero-stats li{padding:0 10px;gap:8px;align-content:start}
+  .hero-stats li:first-child{padding-left:0}
+  .hero-stats b{font-size:clamp(17px,4.6vw,24px);white-space:nowrap}
+  .hero-stats span{font-size:9px;line-height:1.5;letter-spacing:.07em}
+}
+@media(min-width:901px){
+  .hero{--sw:min(30vw,460px);--sr:clamp(40px,8vw,150px)}
+  .hero-content{max-width:min(860px,52vw)}
+  .hero h1{font-size:clamp(3.2rem,7vw,8rem)!important}
+  .hero h1 span:last-child::after{width:130px;height:8px;margin-top:22px}
+  .hero-sub{font-size:clamp(16px,1.3vw,21px)!important;max-width:min(580px,40vw)!important;margin:26px 0 32px!important}
+  .hero-actions .button{min-height:62px;padding:0 32px;font-size:15px;box-shadow:0 18px 36px -14px rgba(0,159,209,.55)}
+  .hero-actions .button-arrow{font-size:22px}
+  .hero-call{gap:14px!important}
+  .hero-call svg{width:52px;height:52px;padding:14px}
+  .hero-call a{font-size:clamp(16px,1.25vw,20px)!important}
+  .hero-stats{margin-top:38px}
+
+  /* flowing thread across the empty middle */
+  .hero-thread{display:block;position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;overflow:visible}
+  .hero-thread path{fill:none;vector-effect:non-scaling-stroke;stroke-linecap:round}
+  .hero-thread .t-base{stroke:url(#fidaThread);stroke-width:1.6;opacity:.45}
+  .hero-thread .t-dash{stroke:url(#fidaThread);stroke-width:3.5;stroke-dasharray:1 16;animation:threadRun 2.2s linear infinite}
+  @keyframes threadRun{to{stroke-dashoffset:-34}}
+
+  /* giant ghost wordmark */
+  .hero-ghost{display:block;position:absolute;z-index:0;left:40vw;bottom:-.5vw;font:400 17vw/.8 "Bevan",serif;letter-spacing:.02em;color:transparent;-webkit-text-stroke:2px rgba(0,159,209,.13);pointer-events:none;user-select:none}
+}
+.hero-range{padding:8px;border-radius:22px;background:rgba(255,255,255,.92);border:1px solid #d3e9f2;box-shadow:0 30px 60px -34px rgba(0,80,110,.45)}
+.hr-head{display:flex;align-items:center;justify-content:space-between;padding:12px 14px 10px;font:500 10.5px "DM Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:#48606a}
+.hr-head i{display:inline-block;width:7px;height:7px;margin-right:9px;border-radius:50%;background:#009fd1;box-shadow:0 0 0 4px rgba(0,159,209,.16)}
+.hr-head em{font-style:normal;color:#009fd1;font-weight:500}
+.hr-list{margin:0;padding:0;list-style:none}
+.hr-list a{display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:14px;text-decoration:none;color:#0f2530;transition:background .25s}
+.hr-list li+li a{box-shadow:0 -1px 0 #e3f1f6}
+.hr-list a:hover{background:#eef9fd}
+.hr-list small{flex:none;font:500 10.5px "DM Mono",monospace;color:#009fd1;letter-spacing:.06em}
+.hr-list b{flex:1;min-width:0;font:700 14px/1.2 Manrope,Arial,sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hr-list span{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:13px;background:#e3f3f8;color:#009fd1;transition:background .25s,color .25s,transform .25s}
+.hr-list a:hover span{background:#009fd1;color:#fff;transform:translate(2px,-2px)}
+.hr-foot{display:flex;align-items:center;justify-content:space-between;margin-top:6px;padding:13px 16px;border-radius:15px;background:#009fd1;color:#fff;text-decoration:none;font:800 12.5px Manrope,Arial,sans-serif;transition:background .25s}
+.hr-foot:hover{background:#0087b2}
+@media(min-width:1200px){
+  .hero-showcase{display:block;position:absolute;z-index:19;right:calc(var(--sr) + var(--sw) + 18px);top:17%;width:clamp(212px,17vw,304px);pointer-events:none;will-change:opacity}
+  .hero-range{pointer-events:auto;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);opacity:0;transform:translateY(18px);transition:opacity .9s var(--ease) .2s,transform .9s var(--ease) .2s}
+  .hero.is-showcase .hero-range,.hero.is-settled .hero-range{opacity:1;transform:none}
+}
+@media(max-width:780px){
+  .hero-content{order:1}
+  .hero-showcase{display:block;order:2;width:100%;margin:34px 0 0}
+  .hero-quote{order:3}
+  .hero-range{padding:10px}
+  .hr-head{padding:14px 14px 12px}
+  .hr-list a{padding:15px 14px}
+  .hr-list b{font-size:15px}
+  .hr-foot{padding:16px 18px;font-size:13.5px}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-thread .t-dash{animation:none}
+  .hero-range{transition:none}
+}
+
+
+/* ===== Mobile: quick-quote card pops up like a notification, again and again while scrolling ===== */
+.hq-close{display:none}
+@media(max-width:780px){
+  .hero .hero-quote.m-notif{position:fixed;top:auto;left:12px;right:12px;bottom:max(12px,env(safe-area-inset-bottom));width:auto;max-height:84svh;overflow-y:auto;margin:0;z-index:90;padding:22px 20px 20px;
+    box-shadow:0 30px 70px -18px rgba(0,60,90,.5),0 0 0 1px #cfe6ee;
+    opacity:0!important;transform:translateY(calc(100% + 40px))!important;pointer-events:none;
+    transition:opacity .45s var(--ease),transform .7s cubic-bezier(.22,1.2,.36,1)!important}
+  .hero .hero-quote.m-notif.m-show{opacity:1!important;transform:none!important;pointer-events:auto}
+  .hq-close{display:grid;place-items:center;position:absolute;top:12px;right:12px;width:32px;height:32px;padding:0;border:0;border-radius:50%;background:#e3f3f8;color:#0f2530;font:400 20px/1 Manrope,Arial,sans-serif;cursor:pointer;z-index:2}
+  .hero-quote.m-notif h3{padding-right:36px}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero .hero-quote.m-notif{transition:none!important}
+}
 </style></head>
 
 <body>
@@ -2903,13 +2990,33 @@
           <img class="spool-rope" src="asserts/hero-yarn.png" alt="Ball of FIDA yarn with knitted swatches and needles" aria-hidden="true">
         </div>
       </div>
+      <svg class="hero-thread" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <defs><linearGradient id="fidaThread" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#6fd6ff" stop-opacity="0"/><stop offset=".35" stop-color="#6fd6ff"/><stop offset="1" stop-color="#009fd1"/></linearGradient></defs>
+        <path class="t-base" d="M 38 97 C 47 106, 50 60, 57 66 S 66 86, 70 62 S 74 38, 80 50"/>
+        <path class="t-dash" d="M 38 97 C 47 106, 50 60, 57 66 S 66 86, 70 62 S 74 38, 80 50"/>
+      </svg>
+      <div class="hero-ghost" aria-hidden="true">FIDA</div>
+      <div class="hero-showcase">
+        <div class="hero-range reveal" aria-label="Our product range">
+          <div class="hr-head"><span><i></i>Our range</span><em>07 lines</em></div>
+          <ul class="hr-list">
+            <li><a href="#products"><small>01</small><b>Monofilament Yarn</b><span>↗</span></a></li>
+            <li><a href="#products"><small>02</small><b>Multifilament Yarn</b><span>↗</span></a></li>
+            <li><a href="#products"><small>03</small><b>Hanks</b><span>↗</span></a></li>
+            <li><a href="#products"><small>04</small><b>Fishing Nets</b><span>↗</span></a></li>
+          </ul>
+          <a class="hr-foot" href="#products">Explore all categories <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
       <div class="hero-content reveal">
         <h1><span>Stronger by</span><span><em>every</em> strand.</span></h1>
         <p class="hero-sub">Precision nylon monofilament yarn, hanks and fishing nets, available in all sizes for reliable quality — serving customers across India and Asia.</p>
         <div class="hero-actions"><a class="button" href="#products">Explore our range <span class="button-arrow">↓</span></a><div class="hero-call"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"/></svg><span><a href="tel:+919363492561">+91 93634 92561</a><a href="tel:+919363492565">+91 93634 92565</a></span></div></div>
+        <ul class="hero-stats" aria-label="At a glance"><li><b>07</b><span>Product categories</span></li><li><b>ALL</b><span>Sizes available</span></li><li><b>IN·ASIA</b><span>Customers served</span></li></ul>
       </div>
       <div class="hero-meta">SCROLL TO DISCOVER</div>
       <div class="hero-quote" id="hero-quote">
+        <button type="button" class="hq-close" id="hq-close" aria-label="Close quote form">×</button>
         <div class="hero-quote-form">
           <h3>Get a quick quote</h3>
           <p>Tell us what you need — our team will call you back today.</p>
@@ -3399,6 +3506,67 @@
         });
         hero.addEventListener('mouseleave', () => { tiltX = 0; tiltY = 0; requestRender(); });
       }
+    })();
+    (function heroDecorFade() {
+      const items = document.querySelectorAll('.hero-showcase, .hero-thread, .hero-ghost');
+      if (!items.length) return;
+      function fade() {
+        const p = innerWidth < 1200 ? 0 : Math.min(1, scrollY / (innerHeight * .55));
+        items.forEach(el => { el.style.opacity = p ? (1 - p).toFixed(3) : ''; });
+      }
+      addEventListener('scroll', fade, { passive: true });
+      addEventListener('resize', fade);
+      fade();
+    })();
+    (function mobileQuoteNotification() {
+      const card = document.getElementById('hero-quote');
+      const hero = document.querySelector('.hero');
+      const closeBtn = document.getElementById('hq-close');
+      const form = document.getElementById('hero-enquiry-form');
+      if (!card || !hero || !form) return;
+      const mq = matchMedia('(max-width:780px)');
+      let shown = false, hideTimer = null, lastHide = 0, lastY = 0, engaged = false, enquiryVisible = false, bound = false;
+      const SHOW_FOR = 7000, COOLDOWN = 2500, SCROLL_STEP = 350;
+
+      function show() {
+        if (shown || !mq.matches || !hero.classList.contains('is-settled') || enquiryVisible) return;
+        if (card.classList.contains('state-success')) return;
+        shown = true; card.classList.add('m-show');
+        clearTimeout(hideTimer);
+        hideTimer = setTimeout(() => { if (!engaged) hide(); }, SHOW_FOR);
+      }
+      function hide() {
+        if (!shown) return;
+        shown = false; engaged = false;
+        card.classList.remove('m-show');
+        clearTimeout(hideTimer);
+        lastHide = Date.now(); lastY = scrollY;
+      }
+      function onScroll() {
+        if (!mq.matches) return;
+        if (shown && !engaged && Math.abs(scrollY - lastY) > 0) { /* keep timer running while user scrolls */ }
+        if (!shown && Date.now() - lastHide > COOLDOWN && Math.abs(scrollY - lastY) > SCROLL_STEP) show();
+      }
+      function sync() {
+        if (mq.matches) {
+          card.classList.add('m-notif');
+          if (!bound) { bound = true; }
+          if (hero.classList.contains('is-settled')) setTimeout(show, 600);
+        } else {
+          card.classList.remove('m-notif', 'm-show');
+          shown = false; clearTimeout(hideTimer);
+        }
+      }
+      form.addEventListener('focusin', () => { engaged = true; clearTimeout(hideTimer); });
+      closeBtn && closeBtn.addEventListener('click', hide);
+      addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('hero-settled', () => { if (mq.matches) setTimeout(show, 700); });
+      const enquiry = document.getElementById('enquiry');
+      if (enquiry && 'IntersectionObserver' in window) {
+        new IntersectionObserver(es => es.forEach(e => { enquiryVisible = e.isIntersecting; if (enquiryVisible) hide(); }), { threshold: .1 }).observe(enquiry);
+      }
+      mq.addEventListener ? mq.addEventListener('change', sync) : mq.addListener(sync);
+      sync();
     })();
     intro.addEventListener('click', closeIntro);
     introVideo.addEventListener('loadeddata', () => { introVideo.play().catch(() => { }); });
